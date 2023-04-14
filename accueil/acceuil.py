@@ -5,9 +5,10 @@ import Fonction_wordcloud.wordcloud as wc
 
 def choix_acceuil(dataframe):
 
-    st.header("Acceuil")
+    st.header("Accueil")
     st.write(" ")
     st.write("Cette application a pour but de réaliser une rapide étude de texte sur des conversations Discord sur les années 2019, 2020 et 2022.")
+    st.write("L'année 2021 n'est pas présente dans le corpus.")
     st.write("Elle permettra de visualiser les thèmes les plus réccurents sur les conversations via des wordclouds pour les illustrer.")
     st.write("Une page est dédiée pour voir la répartitions des conversations en fonction des années, et une gallerie est disponible pour voir les différents wordclouds.")
     st.write('De nombreux terme employés font références à un contexte gaming, comme les pseudonymes, des expressions gamers, ou encore des angliscismes.')
