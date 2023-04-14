@@ -113,3 +113,36 @@ def wordcloud_mot_annee(dataframe, input_annee):
     df_mois_fonc = dataframe[dataframe["year"] == input_annee]
     texte_all = " ".join(df_mois_fonc["texte_clean"])
     return wordcloud_frequence(texte_all)
+
+# Mini Masque
+emplacement_icone2 = "mini_wc.jpg"
+mini_mask = np.array(Image.open(emplacement_icone2))
+mini_mask[mini_mask == 255] = 255
+
+# Wordcloud des 20 mots récurrents
+
+def word_cloud_20_freq(data, mask=None):
+    cloud = WordCloud(scale=3,
+                        max_words=10,
+                        colormap='tab20',
+                        mask=mask,
+                        #repeat=True,
+                        background_color='white',
+                        collocations=True,
+                        contour_color='royalblue',
+                        normalize_plurals=True,
+                        random_state=42,
+                        width = 80, height = 20,
+                        max_font_size = 10,
+                        contour_width=10).generate_from_text(data)
+    plt.figure(figsize=(5,4))
+    plt.imshow(cloud, alpha = 1 , interpolation='nearest')
+    plt.axis('off')
+    st.pyplot()
+
+# Boucler le texte par mois
+def mini_wordcloud_mois(dataframe, mois):
+    texte_mois = dataframe[dataframe["month_str"] == mois]
+    texte_mois = " ".join(texte_mois["texte_clean"])
+    word_cloud_20_freq(texte_mois, )
+

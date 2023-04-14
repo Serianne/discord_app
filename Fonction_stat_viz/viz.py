@@ -4,6 +4,7 @@ import seaborn as sns
 import nltk
 import plotly_express as px
 import streamlit as st
+import Fonction_wordcloud.wordcloud as wc
 
 # Procédure pour afficher des informations sur le df et retourner le df qui contient les années
 def stats_generales(df_fonc, input_annee):
@@ -206,3 +207,40 @@ def graph_donut_mois(df_fonc, input_annee):
 
         #fig.show()
         st.plotly_chart(fig, use_container_width=True)
+
+
+## Viz répartition journée des messages
+
+# Définir des ranges horaires
+def range_horaire(heure): 
+
+    if 8 <= heure < 12:
+        return "Matin"
+    elif 12 <= heure < 18:
+        return "Journée"
+    else :
+        return "Soirée"
+
+def range_horaire_message(df_fonc, input_mois):
+    # Definir les lignes du mois
+    df_mensuel = df_fonc[df_fonc["month_str"] == input_mois]
+    # Parser pour récupérer les dates du mois
+    df_mensuel["Timestamp"] = pd.to_datetime(df_mensuel["Timestamp"], format= '%Y-%m-%d %H:%M:%S.%f')
+    df_mensuel["hour"] = df_mensuel["Timestamp"].dt.hour
+    df_mensuel["date"] = df_mensuel["Timestamp"].dt.date
+    # Appliquer la catégorie de range horaires
+    df_mensuel["ranges_horaires"] = df_mensuel["hour"].apply(lambda heure : range_horaire(heure))
+    # Afficher la date et concat pour un affichage plus clair
+    df_mensuel["date_graph"] = pd.to_datetime(df_mensuel["date"], format= '%Y-%m-%d').dt.day
+    df_mensuel["date_graph"] = df_mensuel["day_str"].astype(str) + ' ' + df_mensuel["date_graph"].astype(str)
+
+    fig, ax = plt.subplots(figsize=(10,3))
+    sns.set_theme(style="whitegrid",)
+    sns.countplot(data=df_mensuel, hue="ranges_horaires", x="date_graph",
+                    palette="viridis")
+    plt.xticks(rotation=25, ha='right')
+    plt.ylabel("")
+    plt.xlabel("")
+    plt.legend(bbox_to_anchor = (0.50, -0.40), ncols=3,) 
+    #plt.show()
+    st.pyplot(fig)

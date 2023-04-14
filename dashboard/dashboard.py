@@ -6,7 +6,8 @@ import Fonction_wordcloud.wordcloud as wc
 import pandas as pd
 
 
-### Partie dashboard
+# Partie dashboard 
+
 
 def moyenne_convers_mensuelle(dataframe_mois, input_mois): 
     df_moyenne_mensuelle = dataframe_mois[dataframe_mois["month_str"] == input_mois]
@@ -162,8 +163,12 @@ def dashboard_show(dataframe):
         with ligne1_2:
             st.write(" ")
             st.write(" ")
-            st.subheader("Les 10 mots les plus fréquents")
-            viz.freq_mot_mois(df_mois, select_mois)
+
+            st.subheader("Périodes d'échanges")
+            viz.range_horaire_message(df_mois, select_mois)
+            st.write(" ")
+            st.subheader("Les mots les plus fréquents")
+            wc.mini_wordcloud_mois(df_mois, select_mois)
 
             
 
