@@ -134,24 +134,26 @@ def graph_pieplot_day(df_fonc, input_mois):
         size = [len(df_mensuel[df_mensuel["day_str"] == label[0]]), len(df_mensuel[df_mensuel["day_str"] == label[1]]), len(df_mensuel[df_mensuel["day_str"] == label[2]]),
                 len(df_mensuel[df_mensuel["day_str"] == label[3]]), len(df_mensuel[df_mensuel["day_str"] == label[4]]), len(df_mensuel[df_mensuel["day_str"] == label[5]]),
                 len(df_mensuel[df_mensuel["day_str"] == label[6]]), ]
-       
+    
         size_pie = []
         label_pie = []
         liste_explode = []
         for i, (label, size) in enumerate(zip(label, size )):
                 if size != 0 :
+                       
                         size_pie.append(size)
                         label_pie.append(label)
                         liste_explode.append(0.10)
 
-        fig, ax = plt.subplots(figsize=(5,3))
+        fig, ax = plt.subplots(figsize=(10,3))
         sns.set_theme(style="whitegrid",)
         ax1 = plt.subplot()
-        colors = sns.color_palette('deep')
+        colors = sns.color_palette('tab20')
         ax1.pie(size_pie,
                 labels= label_pie, colors = colors,
-                explode = liste_explode, 
-                autopct='%1.0f%%', startangle=90, counterclock=False)
+                explode = liste_explode,
+                autopct='%1.1f%%', startangle=90, counterclock=False)
+        ax1.set_title("Conversation par jour pour {}".format(input_mois.lower()))
         plt.tight_layout()
         st.pyplot(fig)
 
