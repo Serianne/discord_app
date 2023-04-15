@@ -128,12 +128,12 @@ def line_plot_an(dataframe):
 
 # Pie chart conversations par jour en fonction du mois
 def graph_pieplot_day(df_fonc, input_mois):
-        jour_mois = df_fonc[df_fonc["month_str"] == input_mois]
+        df_mensuel = df_fonc[df_fonc["month_str"] == input_mois]
 
-        label = ["Dimanche", "Samedi", "Vendredi", "Jeudi", "Mercredi", "Mardi", 'Lundi',]
-        size = [len(jour_mois[jour_mois["day_str"] == label[6]]), len(jour_mois[jour_mois["day_str"] == label[5]]), len(jour_mois[jour_mois["day_str"] == label[4]]),
-                len(jour_mois[jour_mois["day_str"] == label[3]]), len(jour_mois[jour_mois["day_str"] == label[2]]), len(jour_mois[jour_mois["day_str"] == label[1]]),
-                len(jour_mois[jour_mois["day_str"] == label[0]]), ]
+        label = ['Lundi', "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche",]
+        size = [len(df_mensuel[df_mensuel["day_str"] == label[0]]), len(df_mensuel[df_mensuel["day_str"] == label[1]]), len(df_mensuel[df_mensuel["day_str"] == label[2]]),
+                len(df_mensuel[df_mensuel["day_str"] == label[3]]), len(df_mensuel[df_mensuel["day_str"] == label[4]]), len(df_mensuel[df_mensuel["day_str"] == label[5]]),
+                len(df_mensuel[df_mensuel["day_str"] == label[6]]), ]
        
         size_pie = []
         label_pie = []
@@ -151,7 +151,7 @@ def graph_pieplot_day(df_fonc, input_mois):
         ax1.pie(size_pie,
                 labels= label_pie, colors = colors,
                 explode = liste_explode, 
-                autopct='%1.0f%%', startangle=90)
+                autopct='%1.0f%%', startangle=90, counterclock=False)
         plt.tight_layout()
         st.pyplot(fig)
 
