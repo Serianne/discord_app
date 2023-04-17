@@ -152,8 +152,8 @@ def graph_pieplot_day(df_fonc, input_mois):
         ax1.pie(size_pie,
                 labels= label_pie, colors = colors,
                 explode = liste_explode,
-                autopct='%1.f%%', startangle=90, counterclock=False)
-        ax1.set_title("Conversation par jour pour {}".format(input_mois.lower()))
+                autopct='%1.1f%%', startangle=90, counterclock=False)
+        #ax1.set_title("Conversation par jour pour {}".format(input_mois.lower()))
         plt.tight_layout()
         st.pyplot(fig)
 
