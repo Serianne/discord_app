@@ -195,7 +195,7 @@ def graph_donut_mois(df_fonc, input_annee):
         df_fonc.rename(columns={"month_str": "Mois", "month" : "Nombre de lignes" }, inplace=True)
 
         fig = px.pie(df_fonc, names="Mois",  values="Nombre de lignes", hole=0.6, width=800, height=400,
-                     category_orders={"Mois": ['Janvier', 'Février', 'Mars', "Mai", "Avril", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"]},
+                     category_orders={"Mois": ['Janvier', 'Février', 'Mars', "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"]},
                      color_discrete_sequence=px.colors.qualitative.T10)
         fig.update_traces(textinfo='percent')
 
@@ -255,7 +255,7 @@ def heatmap_mois_jour(dataframe, input_mois):
                                 ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'])
 
     dataframe ["month_str"] = pd.Categorical(dataframe ["month_str"],
-                                ['Janvier', 'Février', 'Mars', "Mai", "Avril", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"])
+                                ['Janvier', 'Février', 'Mars', "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"])
     dataframe = pd.pivot_table(data = dataframe, 
                                 values='month',
                                 columns="day_str", 
