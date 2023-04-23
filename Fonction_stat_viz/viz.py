@@ -262,7 +262,7 @@ def heatmap_mois_jour(dataframe, input_mois):
                                 index="month_str",
                                 aggfunc='count')
 
-    fig, ax = plt.subplots(figsize=(15,7))
+    fig, ax = plt.subplots(figsize=(12,5))
     sns.set_theme(style="whitegrid",)
     ax = plt.subplot()
     ax = sns.heatmap(dataframe.T, 
