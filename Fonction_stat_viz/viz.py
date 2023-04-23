@@ -275,7 +275,6 @@ def heatmap_mois_jour(dataframe, input_mois):
                     fmt='g',
                     )
 
-    plt.title(" \n ")
     ax.set(xlabel=" \n ", ylabel=" \n ")
     plt.yticks(rotation=0, ha='right')
     ax.xaxis.tick_top()
