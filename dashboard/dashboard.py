@@ -121,7 +121,8 @@ def dashboard_show(dataframe):
             st.write("Cliquez pour cocher/décocher.")
         with ligne1_2:
             
-            viz.graph_repartition(dataframe, choix_annee)
+            viz.heatmap_mois_jour(dataframe, choix_annee)
+            #viz.graph_repartition(dataframe, choix_annee)
 
 
     ### Deuxième partie 

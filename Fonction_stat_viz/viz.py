@@ -246,3 +246,38 @@ def range_horaire_message(df_fonc, input_mois):
     plt.legend(bbox_to_anchor = (0.50, -0.40), ncols=3,) 
     #plt.show()
     st.pyplot(fig)
+
+# Heatmap pour remplacer le barplot du dashboard annuel
+def heatmap_mois_jour(dataframe, input_mois):
+    dataframe = dataframe[dataframe["year"] == input_mois]
+
+    dataframe ["day_str"] = pd.Categorical(dataframe ["day_str"], 
+                                ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'])
+
+    dataframe ["month_str"] = pd.Categorical(dataframe ["month_str"],
+                                ['Janvier', 'Février', 'Mars', "Mai", "Avril", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"])
+    dataframe = pd.pivot_table(data = dataframe, 
+                                values='month',
+                                columns="day_str", 
+                                index="month_str",
+                                aggfunc='count')
+
+    fig, ax = plt.subplots(figsize=(15,7))
+    sns.set_theme(style="whitegrid",)
+    ax = plt.subplot()
+    ax = sns.heatmap(dataframe.T, 
+                    linewidth=0.5, 
+                    linecolor='w',
+                    square=True,
+                    cmap="Blues",
+                    annot=True,
+                    cbar=False,
+                    fmt='g',
+                    )
+
+    plt.title(" \n ")
+    ax.set(xlabel=" \n ", ylabel=" \n ")
+    plt.yticks(rotation=0, ha='right')
+    ax.xaxis.tick_top()
+    #plt.show()
+    st.pyplot(fig)
