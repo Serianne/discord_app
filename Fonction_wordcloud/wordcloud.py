@@ -47,7 +47,7 @@ def wordcloud_mensuel(dataframe, input_anne, mois):
     try :
         wordcloud_discord(texte_mois, mois, mask=mask)
     except ValueError:
-        st.write("Pas de messages échangé ce mois-ci")
+        st.write("Pas de messages échangés ce mois-ci")
 
 # Pour les wordclouds annuels
 
