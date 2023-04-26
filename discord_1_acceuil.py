@@ -25,7 +25,7 @@ df = load_data()
 
 # Menu
 st.sidebar.title("Navigation")
-options = st.sidebar.selectbox(" ", options=['Présentation', 'Dashboard', 'Gallerie',])
+options = st.sidebar.selectbox(" ", options=['Présentation', 'Dashboard', 'Galerie',])
 
 # Navigation avec boutons radios
 
@@ -37,7 +37,7 @@ elif options == 'Dashboard':
     dashboard.dashboard_show(df)
     
 
-elif options == 'Gallerie':
+elif options == 'Galerie':
     gallerie.gallerie_show(df)
     
 
