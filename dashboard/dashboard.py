@@ -62,7 +62,7 @@ def dashboard_show(dataframe):
         choix_annee = st.selectbox("Selectionnez une année : ", anne_df)
 
     # Conteneur partie annuelle
-    with st.expander("Dashboard par année "):
+    with st.expander("Dashboard par année ", expanded=True):
 
         # Créer un quadrillage pour agencer les graphiques
 
@@ -132,7 +132,7 @@ def dashboard_show(dataframe):
     mois_df = df_mois["month_str"].unique().tolist()
 
     # Conteneur partie mensuelle
-    with st.expander("Dashboard par mois"):
+    with st.expander("Dashboard par mois", expanded=True):
         # Selecteur mois
 
         col_vide1, col_header1, col_input, col_vide3 = st.columns([0.05, 0.5, 0.6, 2])
